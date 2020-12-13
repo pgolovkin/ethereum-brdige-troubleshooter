@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'co.jp.soramitsu'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.web3j', name: 'crypto', version: '5.0.0'
+    compile group: 'org.web3j', name: 'core', version: '5.0.0'
+    compile group: 'org.web3j', name: 'contracts', version: '5.0.0'
+    compile group: 'org.web3j', name: 'parity', version: '5.0.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+}
+
+ext {
+    javaMainClass = "TransactionTroubleshooter"
+}
+
+application {
+    javaMainClass = "TransactionTroubleshooter"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "TransactionTroubleshooter"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
