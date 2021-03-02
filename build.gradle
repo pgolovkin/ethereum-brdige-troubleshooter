@@ -17,6 +17,8 @@ dependencies {
     compile group: 'org.web3j', name: 'parity', version: '5.0.0'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
     compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile "com.squareup.okhttp3:okhttp:4.9.0"
+
 }
 
 ext {
