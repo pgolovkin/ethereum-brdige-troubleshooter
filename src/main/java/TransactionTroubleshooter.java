@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.web3j.tx.Contract.BIN_NOT_PROVIDED;
 
@@ -62,7 +63,7 @@ public class TransactionTroubleshooter {
             throw ex;
         }
 
-        List<String> transactionHashes = Arrays.asList(args[2].split(","));
+        List<String> transactionHashes = Arrays.asList(args[2].split(",")).stream().map(hash -> hash.toLowerCase()).collect(Collectors.toList());
         response.proofs.stream()
                 .filter(p -> transactionHashes.contains(p.irohaTxHash.toLowerCase()))
                 .forEach(p -> {
